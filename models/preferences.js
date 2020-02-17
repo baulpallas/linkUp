@@ -16,8 +16,12 @@ const Preferences = sequelize.define("preferences", {
   zipcode: {
     type: DataTypes.INTEGER
   },
-  priceid: {
-    type: DataTypes.INTEGER
+  price: {
+    type: DataTypes.INTEGER,
+    validate: {
+      min: 1,
+      max: 4
+    }
   },
   availability: {
     type: DataTypes.TIME
