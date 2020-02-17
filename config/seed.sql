@@ -9,10 +9,7 @@ insert into event (name, partysize, creatorid) values
   ('friday fun', 3, 1),
   
 
-insert into preferences (eventid, zipcode, priceid, availability) values
+insert into preferences (eventid, zipcode, price, availability) values
   (1, 20148, 1, 4:00),
 
-insert into price (eventid, zipcode, priceid, availability) values
-  (1, 20148, 1, 4:00),
-  
   

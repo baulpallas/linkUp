@@ -1,4 +1,4 @@
-const sequelize = require("../config");
+var sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 const Creator = require("./creator");
 
@@ -13,9 +13,6 @@ const Event = sequelize.define("event", {
     type: DataTypes.STRING
   },
   partysize: {
-    type: DataTypes.INTEGER
-  },
-  creatorid: {
     type: DataTypes.INTEGER
   }
 });

@@ -1,7 +1,6 @@
-const sequelize = require("../config");
+var sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 const Event = require("./event");
-const Price = require("./price");
 
 const Preferences = sequelize.define("preferences", {
   prefid: {
@@ -10,9 +9,6 @@ const Preferences = sequelize.define("preferences", {
     autoIncrement: true,
     primaryKey: true
   },
-  eventid: {
-    type: DataTypes.STRING
-  },
   zipcode: {
     type: DataTypes.INTEGER
   },
@@ -20,7 +16,7 @@ const Preferences = sequelize.define("preferences", {
     type: DataTypes.INTEGER,
     validate: {
       min: 1,
-      max: 4
+      max: 5
     }
   },
   availability: {
@@ -37,23 +33,8 @@ Preferences.associate = function associate() {
   });
 };
 
-Preferences.associate = function associate() {
-  Preferences.belongsTo(Event, {
-    foreignKey: {
-      name: "eventid",
-      allowNull: false
-    }
-  });
-  Preferences.belongsTo(Price, {
-    foreignKey: {
-      name: "priceid",
-      allowNull: false
-    }
-  });
-};
-
 Preferences.associate();
 
-Peferences.sync();
+Preferences.sync();
 
 module.exports = Preferences;

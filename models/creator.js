@@ -1,21 +1,21 @@
-const sequelize = require("../config");
+var sequelize = require("../config");
 const { DataTypes } = require("sequelize");
 
 const Creator = sequelize.define("creator", {
   creatorid: {
-    type: Sequelize.Integer,
+    type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true
   },
   email: {
-    type: Sequelize.STRING
+    type: DataTypes.STRING
   },
   password: {
-    type: sequelize.STRING
+    type: DataTypes.STRING
   },
   nickname: {
-    type: sequelize.STRING
+    type: DataTypes.STRING
   }
 });
 
