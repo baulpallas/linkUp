@@ -1,5 +1,6 @@
 const sequelize = require("../config");
 const { DataTypes } = require("sequelize");
+const Creator = require("./creator");
 
 const Event = sequelize.define("event", {
   eventid: {
@@ -19,10 +20,17 @@ const Event = sequelize.define("event", {
   }
 });
 
-Event.associate = function(models) {
-  Event.belongsTo(models.Creator);
+Event.associate = function associate() {
+  Event.belongsTo(Creator, {
+    foreignKey: {
+      name: "creatorid",
+      allowNull: false
+    }
+  });
 };
 
-Event.sync();
+Event.associate();
 
 Event.sync();
+
+module.exports = Event;

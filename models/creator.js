@@ -19,10 +19,6 @@ const Creator = sequelize.define("creator", {
   }
 });
 
-Creator.associate = function(models) {
-  Creator.hasMany(models.Event, {
-    onDelete: "cascade"
-  });
-};
-
 Creator.sync();
+
+module.exports = Creator;
