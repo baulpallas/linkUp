@@ -10,10 +10,9 @@ insert into event (name, partysize, creatorid) values
   
 
 insert into preferences (eventid, zipcode, priceid, availability) values
-  ('learn REST', 1),
-  ('build our own ORM', 1),
-  ('discuss MVC for structuring our apps', 1),
-  ('deploy our app to heroku', 1),
-  ('clean out desk', 2),
-  ('say bye', 2),
-  ('work out', 3);
+  (1, 20148, 1, 4:00),
+
+insert into price (eventid, zipcode, priceid, availability) values
+  (1, 20148, 1, 4:00),
+  
+  
