@@ -34,6 +34,7 @@ router.delete("/:id", async (req, res) => {
   res.json(result);
 });
 
+//works
 router.get("/:id/preferences", async (req, res) => {
   const result = await Preferences.findAll({
     where: { eventid: req.params.id }
@@ -41,6 +42,7 @@ router.get("/:id/preferences", async (req, res) => {
   res.json(result);
 });
 
+//works
 router.post("/:id/preferences", async (req, res) => {
   const result = await Preferences.create(req.body, {
     where: { eventid: req.params.id }

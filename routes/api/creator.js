@@ -2,8 +2,8 @@ var router = require("express").Router();
 var Creator = require("../../models/creator");
 
 router.get("/", async (req, res) => {
-  const creators = await Creator.findAll();
-  res.json({ creators: creators });
+  const result = await Creator.findAll();
+  res.json({ result: result });
 });
 
 router.post("/", async (req, res) => {
@@ -14,10 +14,10 @@ router.post("/", async (req, res) => {
 //works
 router.get("/:id", async (req, res) => {
   console.log(req.params.id);
-  const creator = await Creator.findAll({
+  const result = await Creator.findAll({
     where: { creatorid: req.params.id }
   });
-  res.json(creator);
+  res.json(result);
 });
 
 //works

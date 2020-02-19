@@ -1,32 +1,39 @@
 var router = require("express").Router();
 var Preferences = require("../../models/preferences");
 
+//works
 router.get("/", async (req, res) => {
-  const preferences = await Preferences.findAll();
-  res.json({ preferences: preferences });
+  const result = await Preferences.findAll();
+  res.json({ result: result });
 });
 
+//works
 router.post("/", async (req, res) => {
   const result = await Preferences.create(req.body);
   res.json(result);
 });
 
+//works
 router.get("/:id", async (req, res) => {
-  const preference = await Preferences.findAll({
-    where: { id: req.params.id }
-  });
-  res.json(preference);
-});
-
-router.put("/:id", async (req, res) => {
-  const result = await Preferences.update(req.body, {
-    where: { id: req.params.id }
+  const result = await Preferences.findAll({
+    where: { prefid: req.params.id }
   });
   res.json(result);
 });
 
+//works
+router.put("/:id", async (req, res) => {
+  const result = await Preferences.update(req.body, {
+    where: { prefid: req.params.id }
+  });
+  res.json(result);
+});
+
+//works
 router.delete("/:id", async (req, res) => {
-  const result = await Preferences.destroy({ where: { id: req.params.id } });
+  const result = await Preferences.destroy({
+    where: { prefid: req.params.id }
+  });
   res.json(result);
 });
 
