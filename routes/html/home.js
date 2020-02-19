@@ -5,6 +5,10 @@ router.get("/", function(req, res) {
   res.render("home");
 });
 
+router.get("/:id", function(req, res) {
+  res.render("home");
+});
+
 router.post("/", async (req, res) => {
   console.log(req.params);
   const creator = await Creator.create(req.body);
