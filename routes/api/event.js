@@ -1,5 +1,6 @@
 var router = require("express").Router();
 var Event = require("../../models/event");
+var Preferences = require("../../models/preferences");
 
 //works
 router.get("/", async (req, res) => {
@@ -15,8 +16,8 @@ router.post("/", async (req, res) => {
 
 //works
 router.get("/:id", async (req, res) => {
-  const preference = await Event.findAll({ where: { eventid: req.params.id } });
-  res.json(preference);
+  const result = await Event.findAll({ where: { eventid: req.params.id } });
+  res.json(result);
 });
 
 //works
@@ -34,12 +35,14 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/:id/preferences", async (req, res) => {
-  const result = await Event.findAll({ where: { eventid: req.params.id } });
+  const result = await Preferences.findAll({
+    where: { eventid: req.params.id }
+  });
   res.json(result);
 });
 
 router.post("/:id/preferences", async (req, res) => {
-  const result = await Event.create(req.body, {
+  const result = await Preferences.create(req.body, {
     where: { eventid: req.params.id }
   });
   res.json(result);
