@@ -19,10 +19,10 @@
     <!-- Access the Google Maps Geometry Library -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyyh4loEgTKbhHI4W2_a0nB4axkDM6-xQ&libraries=geometry"></script>
     <script>
-      const apiKey = process.env.GOOGLEMAPS_KEY;
-      const url = document.createElement("script");
-      url.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
-      document.head.append(url);
+      // const apiKey = process.env.GOOGLEMAPS_KEY;
+      // const url = document.createElement("script");
+      // url.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+      // document.head.append(url);
 
       // Function to find user
       function geoFindMe() {
@@ -45,6 +45,7 @@
             yPlace,
             0.5
           );
+
           convertToAddress(midpoint);
 
           console.log(JSON.stringify(midpoint));
@@ -75,7 +76,6 @@
           console.log(convertedAddress);
         });
       }
-
       document.querySelector("#find-me").addEventListener("click", geoFindMe);
     </script>
   </body>

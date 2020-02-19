@@ -1,7 +1,5 @@
 var Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(
-  process.env.JAWSDB_URL || "mysql://root:@localhost:3306/meetup_db"
-);
+const sequelize = new Sequelize(process.env.DATABASE_URL);
 
 module.exports = sequelize;
