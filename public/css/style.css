@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans|Heebo&display=swap");
+
+body {
+  font-family: fira sans;
+  margin: 0;
+  background: rgb(243, 236, 228);
+}
+h1 {
+  color: #444;
+  margin: 0;
+  font-size: 5rem;
+  text-align: center;
+}
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #444;
+}
+h6 {
+  padding: 0 0.6rem;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+nav {
+  color: beige;
+  padding: 1rem;
+}
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+}
+.container {
+  padding: 0.8rem 1.2rem;
+}
+.welcome-msg {
+  padding: 5rem 0;
+}
+.enter-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+.waves-effect:hover {
+  color: #f4511e;
+}
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.host {
+  display: none;
+}
