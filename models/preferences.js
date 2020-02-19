@@ -9,8 +9,11 @@ const Preferences = sequelize.define("preferences", {
     autoIncrement: true,
     primaryKey: true
   },
-  zipcode: {
-    type: DataTypes.INTEGER
+  lat: {
+    type: DataTypes.FLOAT
+  },
+  lng: {
+    type: DataTypes.FLOAT
   },
   price: {
     type: DataTypes.INTEGER,

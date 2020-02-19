@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="find-me">Show my location</button><br />
+    <p id="status"></p>
+    <a id="map-link" target="_blank"></a>
+
+    <!-- Access the Google Maps Geometry Library -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyyh4loEgTKbhHI4W2_a0nB4axkDM6-xQ&libraries=geometry"></script>
+    <script>
+      // const apiKey = process.env.GOOGLEMAPS_KEY;
+      // const url = document.createElement("script");
+      // url.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+      // document.head.append(url);
+
+      // Function to find user
+      function geoFindMe() {
+        const status = document.querySelector("#status");
+        const mapLink = document.querySelector("#map-link");
+
+        mapLink.href = "";
+        mapLink.textContent = "";
+
+        let yPlace = new google.maps.LatLng(40.742985, -73.986938);
+
+        function success(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          let xPlace = new google.maps.LatLng(latitude, longitude);
+
+          const midpoint = google.maps.geometry.spherical.interpolate(
+            xPlace,
+            yPlace,
+            0.5
+          );
+
+          convertToAddress(midpoint);
+
+          console.log(JSON.stringify(midpoint));
+          status.textContent = "";
+          mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+          mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+        }
+
+        function error() {
+          status.textContent = "Unable to retrieve your location";
+        }
+
+        if (!navigator.geolocation) {
+          status.textContent = "Geolocation is not supported by your browser";
+        } else {
+          status.textContent = "Locating…";
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+      }
+
+      let GeocoderRequest = {};
+      let convertedAddress;
+      var geocoder = new google.maps.Geocoder();
+      function convertToAddress(address) {
+        GeocoderRequest.location = address;
+        geocoder.geocode(GeocoderRequest, function(results, status) {
+          convertedAddress = results[0].formatted_address;
+          console.log(convertedAddress);
+        });
+      }
+      document.querySelector("#find-me").addEventListener("click", geoFindMe);
+    </script>
+  </body>
+</html>
