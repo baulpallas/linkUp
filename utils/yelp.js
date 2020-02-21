@@ -1,9 +1,6 @@
 let yelpAPI = require("yelp-api");
 
-// let apiKey = process.env.YELP_APIKEY;
-
-const apiKey =
-  "XhsZoYO6OoUhMId0iUOgQWRLvMhOYK3l6GrOytCwDLuecSDfbrD2RbXg2LhSEctDz6fXCbimjvO4OjBBMeMyXhyjmlcakMCS3NIon3TAaJZbJPvhVyzrreKTf6hJXnYx";
+const apiKey = "";
 let yelp = new yelpAPI(apiKey);
 
 console.log(process.env.DATABASE_URL);

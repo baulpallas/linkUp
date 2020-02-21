@@ -4,9 +4,7 @@ var Event = require("../../models/event");
 var Preferences = require("../../models/preferences");
 
 router.get("/", async function(req, res) {
-  const creator = await Creator.findAll();
-  console.log(creator);
-  res.render("form", { creator });
+  res.render("home", {});
 });
 
 // Works
