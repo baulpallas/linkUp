@@ -29,10 +29,11 @@ submitbtn.addEventListener("click", evt => {
 
 let submiteventbtn = document.getElementById("submit-event-btn");
 
+let eventform = document.getElementById("eventform");
 submiteventbtn.addEventListener("click", evt => {
   evt.preventDefault();
   console.log("Hello!");
-  let eventinputs = document.querySelectorAll("input");
+  let eventinputs = eventform.querySelectorAll("input");
   const newEvent = {};
   newEvent.creatorid = creatorid;
   for (let input of eventinputs) {
@@ -48,5 +49,30 @@ submiteventbtn.addEventListener("click", evt => {
   })
     .then(res => res.json())
     .then(data => console.log("successfully created new creator: ", data))
+    .catch(err => console.log("error creating new creator : ", err));
+});
+
+let signinform = document.getElementById("signinform");
+let loginbtn = document.getElementById("log-in-btn");
+loginbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  let logininput = signinform.querySelectorAll("input");
+  let loginuser = {};
+  for (let user of logininput) {
+    loginuser[user.name] = user.value;
+  }
+  fetch("/auth/login", {
+    method: "POST",
+    body: JSON.stringify(loginuser),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      // creatorid = data.creatorid;
+      // console.log(creatorid);
+      console.log("successfully created new creator: ", data);
+    })
     .catch(err => console.log("error creating new creator : ", err));
 });
