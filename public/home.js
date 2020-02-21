@@ -1,7 +1,5 @@
 let inputform = document.getElementById("inputform");
 let submitbtn = document.getElementById("submitbtn");
-let eventForm = document.getElementById("TOCOME");
-let eventbtn = document.getElementById("new-event-btn");
 
 submitbtn.addEventListener("click", evt => {
   evt.preventDefault();
@@ -23,12 +21,15 @@ submitbtn.addEventListener("click", evt => {
     .catch(err => console.log("error creating new creator : ", err));
 });
 
-eventbtn.addEventListener("click", evt => {
+let submiteventbtn = document.getElementById("submiteventbtn");
+
+submiteventbtn.addEventListener("click", evt => {
   evt.preventDefault();
   console.log("Hello!");
-  let submitbtn = document.querySelectorAll("input");
+
+  let eventinputs = document.querySelectorAll("input");
   const newEvent = {};
-  for (let input of formInputs) {
+  for (let input of eventinputs) {
     newEvent[input.name] = input.value;
   }
   fetch("/api/event", {
