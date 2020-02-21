@@ -34,4 +34,17 @@ router.delete("/:id", async (req, res) => {
   res.json(result);
 });
 
+router.get("/:id/event", async (req, res) => {
+  const result = await Event.findAll({
+    where: { creatorid: req.params.id }
+  });
+  res.json(result);
+});
+router.post("/:id/event", async (req, res) => {
+  const result = await Event.create(req.body, {
+    where: { creatorid: req.params.id }
+  });
+  res.json(result);
+});
+
 module.exports = router;

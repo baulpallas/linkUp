@@ -8,6 +8,71 @@
         </div>
     </div>
     <div class="host">
-        <h1>hi i am a host!!</h1>
+        <h1>Get ready to linkUp!</h1>
+        <h2>I am a ...</h2>
+        <div class="enter-buttons">
+            <a class="waves-effect blue-grey darken-3 btn-large" id="new-host-btn">New User</a>
+            <a class="waves-effect blue-grey darken-3 btn-large" id="existing-host-btn">Exisitng User</a>
+        </div>
+    </div>
+    <div class="newhost">
+        <form id="inputform">
+            <label for="email">Enter your email address</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Enter a password</label><br>
+            <input type="password" id="password" name="password" required>
+            <label for="nickname">Enter a nickname (optional)</label><br>
+            <input type="text" id="nickname" name="nickname">
+            <br><br>
+            <input class="waves-effect blue-grey darken-3 btn" id="submitbtn" type="submit"></input>
+        </form>
+    </div>
+    <div class="exisitnghost">
+        <form id="signinform">
+            <label for="email">Enter your email address</label><br>
+            <input type="email" id="exhostemail" name="exhostemail" required><br>
+            <label for="password">Enter your password</label><br>
+            <input type="password" id="exhostpassword" name="exhostpassword" required>
+            <br><br>
+            <input class="waves-effect blue-grey darken-3 btn" id="log-in-btn" type="button"></input>
+            {{!-- need to be linked to a GET request --}}
+        </form>
+    </div>
+    <div class="host-home">
+        <h1 style="padding-top: 3rem;">Let's get started!</h1>
+        <div class="event-buttons">
+            <button class="waves-effect blue-grey darken-3 btn-large" id="new-event-btn"
+                style="margin-bottom: 10px">create
+                new event</button>
+            <button class="waves-effect blue-grey darken-3 btn-large" id="existing-event-btn">join
+                existing event</button>
+        </div>
+    </div>
+    <div class="new-event">
+        <h1 style="padding-top: 3rem; font-size: 4.5rem;">Let's create your event!</h1>
+        <form id="eventform">
+            <label for="eventname">Enter your event name</label><br>
+            <input type="text" id="eventname" name="eventname" required><br>
+            <label for="cars">Choose a car:</label>
+            <select id="cars" name="cars">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+            <br><br>
+            <input class="waves-effect blue-grey darken-3 btn" id="submit-event-btn" type="submit"></input>
+        </form>
+    </div>
+    {{!-- <div class="event-id">
+        <h1 style="padding-top: 3rem;">Let's get your party to linkUp!</h1>
+        <h2>Your event id is</h2>
+        <h3> 5
+            {{event.dataValues.eventid}}
+        </h3>
+
+    </div> --}}
+    <div class="guest">
+        <h1>Get ready to linkUp!</h1>
     </div>
 </div>
