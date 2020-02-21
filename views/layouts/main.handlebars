@@ -20,11 +20,17 @@
             <h6>linkUp</h6>
         </div>
     </nav>
+    <div id="back-btn">
+        <button class="waves-effect blue-grey darken-3 btn">Back</button>
+    </div>
 
     {{{body}}}
-
+    </div>
+    {{!-- <div>
+        <button class="waves-effect blue-grey darken-3 btn" id="host-pref-btn">Submit details</button>
+    </div> --}}
     <footer class="page-footer blue-grey darken-4">
-        <div class="container">
+        <div class="container disclaimer">
             <div class="row">
                 <div class="col s12">
                     <p class="grey-text text-lighten-4">This application uses Yelp API, Twilio API, Sequilize and
@@ -41,11 +47,39 @@
     </footer>
     <script>
         $("#host-btn").click(function () {
-            console.log('clikeck');
             $('.host').css("display", "block");
-            $('.welcome-msg').css("display", "none")
+            $('.welcome-msg').css("display", "none");
+            $('.disclaimer').css("display", "none")
         })
+        $("#guest-btn").click(function () {
+            $('.guest').css("display", "block");
+            $('.welcome-msg').css("display", "none");
+            $('.disclaimer').css("display", "none")
+        })
+        $("#new-host-btn").click(function () {
+            $('.newhost').css("display", "block");
+            $('.host').css("display", "none");
+        })
+        $("#existing-host-btn").click(function () {
+            $('.exisitnghost').css("display", "block");
+            $('.host').css("display", "none");
+        })
+        $('#submitbtn').click(function () {
+            $('.host-home').css("display", "block");
+            $('.newhost').css("display", "none");
+        })
+        $('#new-event-btn').click(function () {
+            $('.new-event').css("display", "block");
+            $('.host-home').css("display", "none");
+        })
+
+        // Or with jQuery
+
+
+
     </script>
+    <script src="../public/home.js"></script>
+    <script src="../public/backnav.js"></script>
 </body>
 
 </html>

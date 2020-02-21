@@ -21,12 +21,19 @@ submitbtn.addEventListener("click", evt => {
     .catch(err => console.log("error creating new creator : ", err));
 });
 
+<<<<<<< HEAD
 let submiteventbtn = document.getElementById("submiteventbtn");
 
 submiteventbtn.addEventListener("click", evt => {
   evt.preventDefault();
   console.log("Hello!");
 
+=======
+let submiteventbtn = document.getElementById("submit-event-btn");
+submiteventbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  console.log("Hello!");
+>>>>>>> master
   let eventinputs = document.querySelectorAll("input");
   const newEvent = {};
   for (let input of eventinputs) {
