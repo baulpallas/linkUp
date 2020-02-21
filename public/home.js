@@ -1,5 +1,7 @@
 let inputform = document.getElementById("inputform");
 let submitbtn = document.getElementById("submitbtn");
+let eventForm = document.getElementById("TOCOME");
+let eventbtn = document.getElementById("new-event-btn");
 
 submitbtn.addEventListener("click", evt => {
   evt.preventDefault();
@@ -12,6 +14,26 @@ submitbtn.addEventListener("click", evt => {
   fetch("/api/creator", {
     method: "POST",
     body: JSON.stringify(newUser),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => console.log("successfully created new creator: ", data))
+    .catch(err => console.log("error creating new creator : ", err));
+});
+
+eventbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  console.log("Hello!");
+  let submitbtn = document.querySelectorAll("input");
+  const newEvent = {};
+  for (let input of formInputs) {
+    newEvent[input.name] = input.value;
+  }
+  fetch("/api/event", {
+    method: "POST",
+    body: JSON.stringify(newEvent),
     headers: {
       "Content-Type": "application/json"
     }

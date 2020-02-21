@@ -1,12 +1,14 @@
 const router = require("express").Router();
+const Creator = require("./../../models/creator")
 
 // auth0, passport, passport-local, passport-jwt , express-session, express-jwt
 
 router.post('/login', (req, res) => {
+    console.log('hello')
     const {email, password} = req.body;
     let user = null;
     try {
-        user = await Creator.find({where: {email: email}});
+        user = await Creator.findAll({where: {email: email}});
     } catch(err) {
         res.status(500).json({message: "stuff broke"})
     }
@@ -38,4 +40,4 @@ router.post('/signup', (req, res) => {
     res.status(500).json({message: "stuff broke"})
 })
 
-modules.exports = router;
+module.exports = router;
