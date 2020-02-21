@@ -21,3 +21,5 @@ app.use(require("./routes"));
 app.listen(process.env.PORT || PORT, () => {
   console.log(`server running on ${process.env.PORT || PORT}`);
 });
+
+console.log(process.env.DATABASE_URL);

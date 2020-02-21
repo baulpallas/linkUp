@@ -25,6 +25,8 @@
     "mysql2": "^2.1.0",
     "process-env": "^1.1.0",
     "sequelize": "^5.21.4",
-    "twilio": "^3.39.4"
+    "twilio": "^3.39.4",
+    "yelp-api": "^1.0.3",
+    "yelp-fusion": "^3.0.0"
   }
 }

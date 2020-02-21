@@ -1,5 +1,6 @@
 var router = require("express").Router();
 var Creator = require("../../models/creator");
+var Event = require("../../models/event");
 
 router.get("/", async (req, res) => {
   const result = await Creator.findAll();
@@ -23,6 +24,20 @@ router.get("/:id", async (req, res) => {
 //works
 router.put("/:id", async (req, res) => {
   const result = await Creator.update(req.body, {
+    where: { creatorid: req.params.id }
+  });
+  res.json(result);
+});
+
+router.get("/:id/event", async (req, res) => {
+  const result = await Event.findAll({
+    where: { creatorid: req.params.id }
+  });
+  res.json(result);
+});
+
+router.post("/:id/event", async (req, res) => {
+  const result = await Event.create(req.body, {
     where: { creatorid: req.params.id }
   });
   res.json(result);
