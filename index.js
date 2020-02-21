@@ -6,6 +6,8 @@ const dotenv = require("dotenv").config();
 var app = express();
 const PORT = 8080;
 
+express.static("./public");
+
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
@@ -18,8 +20,4 @@ app.use(require("./routes"));
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`server running on ${process.env.PORT || PORT}`);
-});
-
-app.get("/", function(req, res) {
-  res.render("home");
 });
