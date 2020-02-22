@@ -7,29 +7,30 @@
     <title>linkUp</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../../public/css/style.css">
+
 </head>
 
 <body class="grey lighten-3">
     <nav class="blue-grey darken-4">
         <div class="nav-wrapper">
             <i class="material-icons">people</i>
-            <h6>linkUp</h6>
+            <h6> <a href=""> linkUp</a></h6>
         </div>
     </nav>
-    <div id="back-btn">
+
+    {{!-- <div id="back-btn">
         <button class="waves-effect blue-grey darken-3 btn">Back</button>
-    </div>
+    </div> --}}
 
     {{{body}}}
     </div>
-    {{!-- <div>
-        <button class="waves-effect blue-grey darken-3 btn" id="host-pref-btn">Submit details</button>
-    </div> --}}
     <footer class="page-footer blue-grey darken-4">
+
         <div class="container disclaimer">
             <div class="row">
                 <div class="col s12">
@@ -38,6 +39,7 @@
                 </div>
             </div>
         </div>
+
         <div class="footer-copyright">
             <div class="container">
                 © 2020 Team linkUp
@@ -46,39 +48,23 @@
         </div>
     </footer>
     <script>
-        $("#host-btn").click(function () {
-            $('.host').css("display", "block");
-            $('.welcome-msg').css("display", "none");
-            $('.disclaimer').css("display", "none")
-        })
-        $("#guest-btn").click(function () {
-            $('.guest').css("display", "block");
-            $('.welcome-msg').css("display", "none");
-            $('.disclaimer').css("display", "none")
-        })
-        $("#new-host-btn").click(function () {
-            $('.newhost').css("display", "block");
-            $('.host').css("display", "none");
-        })
-        $("#existing-host-btn").click(function () {
-            $('.exisitnghost').css("display", "block");
-            $('.host').css("display", "none");
-        })
-        $('#submitbtn').click(function () {
-            $('.host-home').css("display", "block");
-            $('.newhost').css("display", "none");
-        })
-        $('#new-event-btn').click(function () {
-            $('.new-event').css("display", "block");
-            $('.host-home').css("display", "none");
-        })
-
-        // Or with jQuery
-
-
-
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        $(document).ready(function () {
+            $('.timepicker').timepicker({
+                pickTime: true,
+                useSeconds: false,
+                format: 'hh:mm',
+                interval: 30
+            });
+        });
+        $(document).ready(function () {
+            $('.datepicker').datepicker({});
+        });
     </script>
-    <script src="../public/home.js"></script>
+
+    <script src="../public/displays.js"></script>
     <script src="../public/backnav.js"></script>
 </body>
 

@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="new-event">
+        <h2 style="padding: 3rem 0; font-size: 4.5rem;">Create your event!</h2>
+        <form id="eventform">
+
+            <input type="text" id="eventname" name="name" placeholder="ex. Drinks After Work" required>
+            <label for="eventname">Enter your event name</label><br>
+            <select id="partysize" name="partysize">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <label for="partysize">Select your party size:</label>
+            <br><br>
+            <button class="waves-effect blue-grey darken-3 btn" id="submit-event-btn" type="submit">Create</button>
+        </form>
+    </div>
+    <div class="event-id">
+        <h2 style="padding-top: 3rem;">Let's get you linkedUp!</h2>
+        <h4>Your event id is</h4>
+        <h3> 5
+            {{event.dataValues.eventid}}
+        </h3>
+        <div class="enter-buttons">
+            <button class="waves-effect blue-grey darken-3 btn enter-pref">What's Next?</button>
+        </div>
+    </div>
+    <div class="guest">
+        <h1 style="padding-bottom: 3rem;">Get ready to linkUp!</h1>
+        <form id="event-id">
+            <input type="number" id="eventid" name="eventid" required>
+            <label for="eventid">Enter your event ID</label>
+            <br><br>
+            <button class="waves-effect blue-grey darken-3 btn enter-pref" id="join-event-btn"
+                type="submit">Enter</button>
+        </form>
+    </div>
+    <div class="pref">
+        <h4 style="padding-bottom: 1.5rem;">Tell us more about you!</h4>
+        <form id="pref-form">
+            <div class="space-evenly"><input type="number" id="zipcode" name="zipcode" placeholder="ex. 10004">
+                <button class="waves-effect blue-grey darken-3 btn-small">Find me</button>
+            </div>
+            <label for="location">Enter your current zip code OR press 'Find Me' to autofill</label>
+            <br>
+            <br>
+            <select id="price" name="price">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+                <option value="4">$$$$</option>
+            </select>
+            <label for="price">Select your party size</label>
+            <br>
+
+            <div class="space-evenly">
+                <input type="text" class="datepicker" placeholder="Select a Date">
+                <input type="text" class="timepicker" placeholder="Select a Time">
+            </div>
+            <label>Select a date and starting time for your availability</label>
+            <br><br>
+            <button class="waves-effect blue-grey darken-3 btn" id='submit-pref' type="button">Submit <i
+                    class="material-icons right">send</i></button>
+        </form>
+    </div>
+</div>
+<script src="../public/event.js"></script>
