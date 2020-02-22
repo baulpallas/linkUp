@@ -89,4 +89,31 @@ loginbtn.addEventListener("click", evt => {
     .catch(err => console.log("error creating new creator : ", err));
 });
 
+let eventidform = document.getElementById("event-id");
+let joinbtn = document.getElementById("join-btn");
+
+joinbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+
+  let eventidinput = eventidform.querySelectorAll("input");
+  let eventtojoin = {};
+  for (let event of eventidinput) {
+    eventtojoin[event.name] = event.value;
+  }
+  console.log(eventtojoin);
+  fetch("/auth/join", {
+    method: "POST",
+    body: JSON.stringify(eventtojoin),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
+    })
+    .catch(err => console.log("error logging event : ", err));
+});
+
 // export { creatorid };
