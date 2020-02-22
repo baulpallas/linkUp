@@ -16,10 +16,10 @@ $("#existing-host-btn").click(function() {
   $(".exisitnghost").css("display", "block");
   $(".host").css("display", "none");
 });
-// $("#submitbtn").click(function() {
-//   $(".host-home").css("display", "block");
-//   $(".newhost").css("display", "none");
-// });
+$("#submitbtn").click(function() {
+  $(".host-home").css("display", "block");
+  $(".newhost").css("display", "none");
+});
 // $("#log-in-btn").click(function() {
 //   $(".host-home").css("display", "block");
 //   $(".exisitnghost").css("display", "none");
