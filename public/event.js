@@ -26,3 +26,7 @@ submiteventbtn.addEventListener("click", evt => {
     })
     .catch(err => console.log("error creating new creator : ", err));
 });
+
+$(document).ready(function() {
+  $(".disclaimer").css("display", "none");
+});
