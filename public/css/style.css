@@ -12,6 +12,11 @@ h1 {
   text-align: center;
 }
 h2 {
+  font-size: 4rem;
+  text-align: center;
+  color: #444;
+}
+h4 {
   font-size: 2rem;
   text-align: center;
   color: #444;
@@ -54,6 +59,10 @@ nav {
   justify-content: space-around;
   padding: 0.5rem 0;
 }
+.grid {
+  padding-top: 1rem;
+  display: grid;
+}
 .waves-effect:hover {
   color: #f4511e;
 }
@@ -68,7 +77,8 @@ footer {
 .exisitnghost,
 .event-id,
 .host-home,
-.new-event {
+.new-event,
+.pref {
   display: none;
 }
 #submitbtn {
@@ -78,7 +88,40 @@ footer {
   padding: 10px 0 0 10px;
   display: none;
 }
-.event-buttons {
-  padding-top: 1rem;
-  display: grid;
+.space-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+#zipcode {
+  width: 70%;
+}
+.datepicker-date-display,
+.timepicker-digital-display {
+  background-color: #263238;
+}
+.datepicker-table td.is-selected {
+  background-color: #263238;
+  color: white;
+}
+.timepicker-canvas line {
+  stroke: #90a4ae !important;
+}
+.timepicker-canvas-bearing {
+  fill: #90a4ae !important;
+}
+.timepicker-canvas-bg {
+  fill: #90a4ae !important;
+}
+.datepicker-cancel,
+.datepicker-done,
+.timepicker-close,
+.datepicker-table td.is-today,
+.dropdown-content li > span {
+  color: #ff5722;
+}
+button {
+  float: right;
+}
+#back-btn {
+  display: block;
 }
