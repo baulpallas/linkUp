@@ -42,6 +42,9 @@ nav {
   color: beige;
   padding: 1rem;
 }
+a {
+  color: white;
+}
 .nav-wrapper {
   display: flex;
   align-items: center;
@@ -80,7 +83,6 @@ footer {
 .exisitnghost,
 .event-id,
 .host-home,
-.pref,
 .loader {
   display: none;
 }
