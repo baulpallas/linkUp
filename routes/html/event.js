@@ -3,7 +3,7 @@ var router = require("express").Router();
 var Event = require("../../models/event");
 
 router.get("/", async function(req, res) {
-  var result = await Event.findAll();
+  // var result = await Event.findAll();
   // console.log(result);
   res.render("event", {});
 });

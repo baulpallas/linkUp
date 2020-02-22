@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Creator = require("./../../models/creator");
+const Event = require("../../models/event");
 
 // auth0, passport, passport-local, passport-jwt , express-session, express-jwt
 
@@ -20,16 +21,13 @@ router.post("/login", async (req, res) => {
     console.log(user[0].dataValues);
   } catch (err) {
     res.status(500).json({ message: "stuff broke" });
-    console.log(messagew);
   }
   if (!user) {
     res.status(500).json({ message: "user doesn't exist" });
-    console.log(message);
   }
 
   if (user && user[0].dataValues.password !== password) {
     res.sendStatus(400).json({ message: "Incorrect passowrd" });
-    console.log(message);
   }
   if (user && user[0].dataValues.password === password) {
     console.log("stepped in");
@@ -45,7 +43,6 @@ router.post("/signup", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: "stuff broke" });
   }
-
   if (user)
     res.status(400).json({
       message: "User with that email already exists.  Try another email."
@@ -55,6 +52,23 @@ router.post("/signup", async (req, res) => {
     res.status(201).redirect("home");
   }
   res.status(500).json({ message: "stuff broke" });
+});
+
+router.post("/join", async (req, res) => {
+  const eventid = req.body.eventid;
+  console.log(eventid);
+  let event = [];
+  try {
+    event = await Event.findAll({ where: { eventid: eventid } });
+    console.log(event);
+    if (event === []) {
+      res.status(500).json({ message: "event doesn't exist" });
+    } else {
+      res.redirect("/preferences");
+    }
+  } catch (err) {
+    res.status(500).json({ message: "stuff broke" });
+  }
 });
 
 module.exports = router;
