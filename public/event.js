@@ -6,6 +6,7 @@ submiteventbtn.addEventListener("click", evt => {
   console.log("Hello!");
   let eventinputs = eventform.querySelectorAll("input");
   const newEvent = {};
+
   newEvent.creatorid = creatorid;
   for (let input of eventinputs) {
     newEvent[input.name] = input.value;
