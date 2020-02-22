@@ -52,9 +52,17 @@
             <button class="waves-effect blue-grey darken-3 btn-large" id="new-event-btn" style="margin-bottom: 10px"> <a
                     href="./event" style="color: white;">create
                     new event</a> </button>
-            {{!-- <button class="waves-effect blue-grey darken-3 btn-large" id="existing-event-btn">join
-                existing event</button> --}}
         </div>
+    </div>
+    <div class="guest">
+        <h1 style="padding-bottom: 3rem;">Get ready to linkUp!</h1>
+        <form id="event-id">
+            <input type="number" id="eventid" name="eventid" required>
+            <label for="eventid">Enter your event ID</label>
+            <br><br>
+            <button class="waves-effect blue-grey darken-3 btn enter-pref" id="join-event-btn" type="submit"
+                href="./preferences">Enter</button>
+        </form>
     </div>
 </div>
 <script src="../public/home.js"></script>
