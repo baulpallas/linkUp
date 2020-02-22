@@ -1,30 +1,33 @@
-<div class="pref">
-    <h4 style="padding-bottom: 1.5rem;">Tell us more about you!</h4>
-    <form id="pref-form">
-        <div class="space-evenly"><input type="number" id="zipcode" name="zipcode" placeholder="ex. 10004">
-            <button class="waves-effect blue-grey darken-3 btn-small">Find me</button>
-        </div>
-        <label for="location">Enter your current zip code OR press 'Find Me' to autofill</label>
-        <br>
-        <br>
-        <select id="price" name="price">
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-            <option value="4">$$$$</option>
-        </select>
-        <label for="price">Select your party size</label>
-        <br>
+<div class="container">
+    <div class="pref">
+        <h4 style="padding-bottom: 1.5rem;">Tell us more about you!</h4>
+        <form id="pref-form">
+            <div class="space-evenly"><input type="number" id="zipcode" name="zipcode" placeholder="ex. 10004">
+                <button class="waves-effect blue-grey darken-3 btn-small">Find me</button>
+            </div>
+            <label for="location">Enter your current zip code OR press 'Find Me' to autofill</label>
+            <br>
+            <br>
+            <select id="price" name="price">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+                <option value="4">$$$$</option>
+            </select>
+            <label for="price">Select your party size</label>
+            <br>
 
-        <div class="space-evenly">
-            <input type="text" class="datepicker" placeholder="Select a Date">
-            <input type="text" class="timepicker" placeholder="Select a Time">
-        </div>
-        <label>Select a date and starting time for your availability</label>
-        <br><br>
-        <button class="waves-effect blue-grey darken-3 btn" id='submit-pref' type="button" href="./result">Submit <i
-                class="material-icons right">send</i></button>
-    </form>
+            <div class="space-evenly">
+                <input type="text" class="datepicker" placeholder="Select a Date">
+                <input type="text" class="timepicker" placeholder="Select a Time">
+            </div>
+            <label>Select a date and starting time for your availability</label>
+            <br><br>
+            <button class="waves-effect blue-grey darken-3 btn" id='submit-pref' type="button"><a
+                    href="./result">Submit</a> <i class="material-icons right">send</i></button>
+        </form>
+    </div>
 </div>
 </div>
+<script src="../public/pref.js"></script>

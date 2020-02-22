@@ -57,5 +57,5 @@ results.forEach(result => {
   </div>
       `
     );
-  } else $(".results-collection").append(
+  }
 });
