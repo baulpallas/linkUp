@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
   const Event = await Event.create(req.body);
   res.render("home", { event: event });
 });
+
 // // Haven't Checked
 // router.post("/", async (req, res) => {
 //   console.log(req.params);
