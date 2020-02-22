@@ -12,7 +12,7 @@ submiteventbtn.addEventListener("click", evt => {
     newEvent[input.name] = input.value;
   }
   console.log(newEvent.name);
-  localStorage.setItem("eventname", newEvent.name);
+
   fetch("/api/event", {
     method: "POST",
     body: JSON.stringify(newEvent),
