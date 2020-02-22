@@ -6,11 +6,13 @@ submiteventbtn.addEventListener("click", evt => {
   console.log("Hello!");
   let eventinputs = eventform.querySelectorAll("input");
   const newEvent = {};
+  let creatorid = localStorage.getItem("creatorid");
   newEvent.creatorid = creatorid;
   for (let input of eventinputs) {
     newEvent[input.name] = input.value;
   }
-  console.log(newEvent);
+  console.log(newEvent.name);
+  localStorage.setItem("eventname", newEvent.name);
   fetch("/api/event", {
     method: "POST",
     body: JSON.stringify(newEvent),
@@ -21,7 +23,6 @@ submiteventbtn.addEventListener("click", evt => {
     .then(res => res.json())
     .then(data => {
       console.log("successfully created new creator: ", data);
-      console.log(data.nickname);
     })
     .catch(err => console.log("error creating new creator : ", err));
 });

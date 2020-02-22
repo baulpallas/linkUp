@@ -1,4 +1,5 @@
 let submitbtn = document.getElementById("submitbtn");
+console.log(submitbtn);
 
 let creatorid;
 
@@ -21,6 +22,7 @@ submitbtn.addEventListener("click", evt => {
     .then(res => res.json())
     .then(data => {
       creatorid = data.creatorid;
+      localStorage.setItem("creatorid", creatorid);
       console.log(creatorid);
       console.log("successfully created new creator: ", data);
       $("#host-welcome").append(
@@ -86,3 +88,5 @@ loginbtn.addEventListener("click", evt => {
     })
     .catch(err => console.log("error creating new creator : ", err));
 });
+
+// export { creatorid };

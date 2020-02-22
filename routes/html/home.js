@@ -14,11 +14,6 @@ router.post("/", async (req, res) => {
   res.render("home", { creator: creator });
 });
 
-router.post("/", async (req, res) => {
-  console.log(req.params);
-  const Event = await Event.create(req.body);
-  res.render("home", { event: event });
-});
 // // Haven't Checked
 // router.post("/", async (req, res) => {
 //   console.log(req.params);

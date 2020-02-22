@@ -4,7 +4,7 @@ var Preferences = require("../../models/preferences");
 
 //works
 router.get("/", async (req, res) => {
-  const events = await Event.findAll();
+  const events = await Event.findAll({});
   res.json({ events: events });
 });
 
