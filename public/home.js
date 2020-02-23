@@ -96,11 +96,17 @@ joinbtn.addEventListener("click", evt => {
   evt.preventDefault();
 
   let eventidinput = eventidform.querySelectorAll("input");
+
+  let eventidval;
   let eventtojoin = {};
   for (let event of eventidinput) {
+    eventidval = event.value;
     eventtojoin[event.name] = event.value;
   }
+  console.log(eventidval);
   console.log(eventtojoin);
+  localStorage.setItem("eventid", eventidval);
+
   fetch("/auth/join", {
     method: "POST",
     body: JSON.stringify(eventtojoin),

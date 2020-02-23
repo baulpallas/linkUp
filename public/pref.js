@@ -6,6 +6,9 @@ let prefs = {};
 let findmebtn = document.getElementById("find-me-btn");
 let latitude;
 let longitude;
+let eventid = localStorage.getItem("eventid");
+console.log(eventid);
+prefs.eventid = eventid;
 findmebtn.addEventListener("click", evt => {
   evt.preventDefault();
   geoFindMe();
@@ -44,22 +47,19 @@ prefbtn.addEventListener("click", evt => {
   let pricepref = document.getElementById("price").value;
   prefs["price"] = pricepref;
   console.log(prefs);
-  // fetch("/auth/login", {
-  //   method: "POST",
-  //   body: JSON.stringify(loginuser),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }
-  // })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     // creatorid = data.creatorid;
-  //     // console.log(creatorid);
-  //     console.log("successfully created new creator: ", data);
-  //     console.log(data.nickname);
-  //     $("#host-welcome").append(
-  //       `Welcome ${data.nickname}! <br>Let's get started.`
-  //     );
-  //   })
-  //   .catch(err => console.log("error creating new creator : ", err));
+  fetch(`/api/event/${eventid}/preferences`, {
+    method: "POST",
+    body: JSON.stringify(prefs),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      prefid = data.prefid;
+      localStorage.setItem("prefid", prefid);
+      console.log(prefid);
+      console.log("successfully added preferences: ", data);
+    })
+    .catch(err => console.log("error creating preferences: ", err));
 });
