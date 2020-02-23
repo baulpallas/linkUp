@@ -1,4 +1,5 @@
 let submiteventbtn = document.getElementById("submit-event-btn");
+let eventid;
 
 let eventform = document.getElementById("eventform");
 submiteventbtn.addEventListener("click", evt => {
@@ -13,7 +14,7 @@ submiteventbtn.addEventListener("click", evt => {
   }
   console.log(newEvent.name);
 
-  fetch("/api/event", {
+  fetch(`/api/creator/${creatorid}/event`, {
     method: "POST",
     body: JSON.stringify(newEvent),
     headers: {
@@ -22,6 +23,9 @@ submiteventbtn.addEventListener("click", evt => {
   })
     .then(res => res.json())
     .then(data => {
+      eventid = data.eventid;
+      localStorage.setItem("eventid", eventid);
+      console.log(eventid);
       console.log("successfully created new creator: ", data);
     })
     .catch(err => console.log("error creating new creator : ", err));
