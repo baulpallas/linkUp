@@ -13,7 +13,7 @@ submiteventbtn.addEventListener("click", evt => {
   }
   console.log(newEvent.name);
 
-  fetch("/api/event", {
+  fetch(`/api/creator/${creatorid}/event`, {
     method: "POST",
     body: JSON.stringify(newEvent),
     headers: {

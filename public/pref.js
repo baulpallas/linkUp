@@ -2,6 +2,7 @@ $(document).ready(function() {
   $(".disclaimer").css("display", "none");
 });
 
+let prefs = {};
 let findmebtn = document.getElementById("find-me-btn");
 let latitude;
 let longitude;
@@ -12,32 +13,37 @@ findmebtn.addEventListener("click", evt => {
     function success(position) {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
-      console.log(latitude);
-      console.log(longitude);
+      prefs["lat"] = latitude;
+      prefs["lng"] = longitude;
+      console.log(prefs);
     }
-
     function error() {
       status.textContent = "Unable to retrieve your location";
     }
 
     if (!navigator.geolocation) {
-      console.log("hello");
     } else {
-      console.log("itworked!");
       navigator.geolocation.getCurrentPosition(success, error);
     }
   }
 });
 
 let prefbtn = document.getElementById("submit-pref");
-let prefform = document.getElementById("pref-form");
+
 prefbtn.addEventListener("click", evt => {
   evt.preventDefault();
-  let prefinput = prefform.querySelectorAll("input");
-  let prefs = {};
-  for (let pref of prefinput) {
-    prefs[pref.name] = pref.value;
-  }
+
+  let dateinput = document.getElementById("date").value;
+  let timeinput = document.getElementById("time").value;
+  let space = " ";
+  let datespace = dateinput.concat(space);
+  let joinedstring = datespace.concat(timeinput);
+  let dateobj = new Date(joinedstring);
+  let finalformat = dateobj.toISOString();
+  prefs["availability"] = finalformat;
+  let pricepref = document.getElementById("price").value;
+  prefs["price"] = pricepref;
+  console.log(prefs);
   // fetch("/auth/login", {
   //   method: "POST",
   //   body: JSON.stringify(loginuser),

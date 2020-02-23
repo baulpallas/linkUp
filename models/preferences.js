@@ -23,7 +23,7 @@ const Preferences = sequelize.define("preferences", {
     }
   },
   availability: {
-    type: DataTypes.TIME
+    type: DataTypes.DATE
   }
 });
 
