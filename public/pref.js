@@ -47,34 +47,42 @@ prefbtn.addEventListener("click", evt => {
   let pricepref = document.getElementById("price").value;
   prefs["price"] = pricepref;
   console.log(prefs);
-  fetch(`/api/event/${eventid}/preferences`, {
-    method: "POST",
-    body: JSON.stringify(prefs),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      prefid = data.prefid;
-      localStorage.setItem("prefid", prefid);
-      console.log(prefid);
-      console.log("successfully added preferences: ", data);
-    })
-    .catch(err => console.log("error creating preferences: ", err));
 
-  fetch(`/utils`, {
-    method: "POST",
-    body: JSON.stringify(prefs),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("successfully posted to server: ", data);
+  function prefpush() {
+    fetch(`/api/event/${eventid}/preferences`, {
+      method: "POST",
+      body: JSON.stringify(prefs),
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-    .catch(err => console.log("error posting to server: ", err));
+      .then(res => res.json())
+      .then(data => {
+        prefid = data.prefid;
+        localStorage.setItem("prefid", prefid);
+        console.log(prefid);
+        console.log("successfully added preferences: ", data);
+      })
+      .catch(err => console.log("error creating preferences: ", err));
+  }
+
+  const serverpush = async () => {
+    const result = await prefpush();
+    fetch(`/utils`, {
+      method: "POST",
+      body: JSON.stringify(prefs),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log("successfully posted to server: ", data);
+      })
+      .catch(err => console.log("error posting to server: ", err));
+  };
+
+  serverpush();
 
   // fetch(`/result`, {
   //   method: "GET",

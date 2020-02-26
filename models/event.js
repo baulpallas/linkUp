@@ -17,17 +17,4 @@ const Event = sequelize.define("event", {
   }
 });
 
-Event.associate = function associate() {
-  Event.belongsTo(Creator, {
-    foreignKey: {
-      name: "creatorid",
-      allowNull: false
-    }
-  });
-};
-
-Event.associate();
-
-Event.sync();
-
 module.exports = Event;

@@ -1,17 +1,31 @@
-var router = require("express").Router();
+const router = require("express").Router();
 
-var Event = require("../../models/event");
+const { Event, Preferences } = require("../../models");
+const utils = require("../../utils");
 
 router.get("/", async function(req, res) {
-  // var result = await Event.findAll();
-  // console.log(result);
-  res.render("event", {});
+  res.render("event");
 });
 
-router.post("/", async (req, res) => {
-  var Event = await Event.create(req.body);
-  console.log(req.body);
-  res.render("event", { event: event });
+router.get("/:id", async function(req, res) {
+  const [event] = await Event.findAll({
+    where: { eventid: req.params.id },
+    include: Preferences
+  });
+
+  const { dataValues: eventDetails = {} } = event;
+  console.log("DEBUG", eventDetails);
+
+  if (eventDetails.preferences && eventDetails.preferences.length > 2) {
+    const eventLocation = await utils.computeLocation(eventDetails);
+    if (eventLocation) {
+      res.render("eventDetails", {
+        event: JSON.stringify({ ...eventDetails, location: eventLocation })
+      });
+    }
+  } else {
+    res.render("preferences");
+  }
 });
 
 module.exports = router;
