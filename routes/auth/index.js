@@ -64,7 +64,7 @@ router.post("/join", async (req, res) => {
     if (event === []) {
       res.status(500).json({ message: "event doesn't exist" });
     } else {
-      res.redirect("/preferences");
+      res.redirect(`/event/${eventid0}`);
     }
   } catch (err) {
     res.status(500).json({ message: "stuff broke" });

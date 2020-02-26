@@ -16,7 +16,7 @@ router.get("/:id", async function(req, res) {
   const { dataValues: eventDetails = {} } = event;
   console.log("DEBUG", eventDetails);
 
-  if (eventDetails.preferences && eventDetails.preferences.length > 2) {
+  if (eventDetails.preferences && eventDetails.preferences.length > 1) {
     const eventLocation = await utils.computeLocation(eventDetails);
     if (eventLocation) {
       res.render("eventDetails", {

@@ -95,7 +95,6 @@ joinbtn.addEventListener("click", evt => {
   evt.preventDefault();
 
   let eventidinput = eventidform.querySelectorAll("input");
-
   let eventidval;
   let eventtojoin = {};
   for (let event of eventidinput) {

@@ -12,6 +12,11 @@ prefs.eventid = eventid;
 findmebtn.addEventListener("click", evt => {
   evt.preventDefault();
   geoFindMe();
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
   function geoFindMe() {
     function success(position) {
       latitude = position.coords.latitude;
@@ -26,7 +31,7 @@ findmebtn.addEventListener("click", evt => {
 
     if (!navigator.geolocation) {
     } else {
-      navigator.geolocation.getCurrentPosition(success, error);
+      navigator.geolocation.getCurrentPosition(success, error, options);
     }
   }
 });
