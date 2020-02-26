@@ -62,4 +62,30 @@ prefbtn.addEventListener("click", evt => {
       console.log("successfully added preferences: ", data);
     })
     .catch(err => console.log("error creating preferences: ", err));
+
+  fetch(`/utils`, {
+    method: "POST",
+    body: JSON.stringify(prefs),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log("successfully posted to server: ", data);
+    })
+    .catch(err => console.log("error posting to server: ", err));
+
+  // fetch(`/result`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }
+  // })
+  //   .then(res => {
+  //     console.log("successfully added preferences: ", res);
+  //     window.location.href = res.url;
+  //     console.log(res.url);
+  //   })
+  //   .catch(err => console.log("error creating preferences: ", err));
 });
