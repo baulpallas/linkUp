@@ -1,28 +1,55 @@
 let yelpAPI = require("yelp-api");
+let Yelp = require("../config/index");
+let Sequelize = require("sequelize");
 
 const apiKey = "";
 let yelp = new yelpAPI(apiKey);
 
+const sequelize = new Sequelize(
+  process.env.DATABASE_URL || "mysql://root:@localhost:3306/meetup_db"
+);
+
 console.log(process.env.DATABASE_URL);
 
-//Longitude/Latitude = Geocoder Midpoint
-//Price = Difference between two price ranges
-//Open_At = Open places in correlation with latest time input, out of two inputs
+//YELP API WORKS 
 
-let lng = 47.222;
-let lat = 69.333;
-let price = 3;
-let open_at = "8:00";
+// let lng = 47.222;
+// let lat = 69.333;
+let location = "07013"; //INCORPORATE GEOCODER? 
+
+let price = // DOESNT CONNECT TO DB
+  Yelp.findAll({
+  attributes: [
+    [sequelize.fn('AVG', sequelize.col('price')), 'avg_price'],
+  ],
+  include: [
+    {model: preferences, attributes: ['eventid']}
+  ],
+  group: ['preferences.eventid']
+}).then(result => result.json(result)); 
+
+let open_at = // DOESNT CONNECT TO DB / CONSIDER OPEN_NOW 
+Yelp.findAll({
+  attributes: [
+    [sequelize.fn('MAX', sequelize.col('availability')), 'best_availability'],
+  ],
+  include: [
+    {model: preferences, attributes: ['eventid']}
+  ],
+  group: ['preferences.eventid']
+}).then(result => result.json(result)); 
+
+let limit = 5; //LIMITS SEARCH RESULTS TO 5
 
 let params = [
-  { longitude: lng },
-  { latitude: lat },
+  { location: location },
   { price: price },
-  { open_at: open_at }
+  { open_at: open_at },
+  { limit: limit }
 ];
-console.log(params);
+//console.log(params);
 
-const yelpQuery = function(params) {
+const yelpQuery = 
   yelp
     .query("businesses/search", params)
     .then(data => {
@@ -30,7 +57,7 @@ const yelpQuery = function(params) {
     })
     .catch(err => {
       console.log(err);
-    });
-};
+});
+
 
 module.exports = yelpQuery;
