@@ -47,13 +47,14 @@ prefbtn.addEventListener("click", evt => {
   let datespace = dateinput.concat(space);
   let joinedstring = datespace.concat(timeinput);
   let dateobj = new Date(joinedstring);
+
   let finalformat = dateobj.toISOString();
   prefs["availability"] = finalformat;
   let pricepref = document.getElementById("price").value;
   prefs["price"] = pricepref;
   console.log(prefs);
 
-  function prefpush() {
+  async function prefpush() {
     fetch(`/api/event/${eventid}/preferences`, {
       method: "POST",
       body: JSON.stringify(prefs),
@@ -67,38 +68,14 @@ prefbtn.addEventListener("click", evt => {
         localStorage.setItem("prefid", prefid);
         console.log(prefid);
         console.log("successfully added preferences: ", data);
+        return data;
       })
       .catch(err => console.log("error creating preferences: ", err));
   }
 
-  const serverpush = async () => {
+  const moveToNextPage = async () => {
     const result = await prefpush();
-    // fetch(`/utils`, {
-    //   method: "POST",
-    //   body: JSON.stringify(prefs),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   }
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log("successfully posted to server: ", data);
-    //   })
-    //   .catch(err => console.log("error posting to server: ", err));
+    location.reload();
   };
-
-  serverpush();
-
-  // fetch(`/result`, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   }
-  // })
-  //   .then(res => {
-  //     console.log("successfully added preferences: ", res);
-  //     window.location.href = res.url;
-  //     console.log(res.url);
-  //   })
-  //   .catch(err => console.log("error creating preferences: ", err));
+  moveToNextPage();
 });

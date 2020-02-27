@@ -25,6 +25,7 @@ const computeLocation = async event => {
     },
     { latitude: lat, longitude: lng }
   ]);
+
   let { longitude, latitude } = midpoint;
 
   const money = Math.floor((priceX + priceY) / 2);
@@ -51,18 +52,21 @@ const computeLocation = async event => {
     { limit: limit }
   ];
 
-  const yelpQuery = function(params) {
-    yelp
+  const yelpQuery = async function(params) {
+    console.log(params);
+    let yelpResponse;
+    await yelp
       .query("businesses/search", params)
       .then(data => {
-        console.log(data);
-        return data;
+        yelpResponse = data;
       })
       .catch(err => {
         console.log(err);
       });
+    console.log(yelpResponse);
+    return yelpResponse;
   };
-  yelpQuery(params);
+  return await yelpQuery(params);
 };
 
 module.exports = {
