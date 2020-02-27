@@ -27,17 +27,4 @@ const Preferences = sequelize.define("preferences", {
   }
 });
 
-Preferences.associate = function associate() {
-  Preferences.belongsTo(Event, {
-    foreignKey: {
-      name: "eventid",
-      allowNull: false
-    }
-  });
-};
-
-Preferences.associate();
-
-Preferences.sync();
-
 module.exports = Preferences;

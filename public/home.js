@@ -1,5 +1,4 @@
 let submitbtn = document.getElementById("submitbtn");
-console.log(submitbtn);
 
 let creatorid;
 
@@ -96,7 +95,6 @@ joinbtn.addEventListener("click", evt => {
   evt.preventDefault();
 
   let eventidinput = eventidform.querySelectorAll("input");
-
   let eventidval;
   let eventtojoin = {};
   for (let event of eventidinput) {
@@ -121,5 +119,3 @@ joinbtn.addEventListener("click", evt => {
     })
     .catch(err => console.log("error logging event : ", err));
 });
-
-// export { creatorid };

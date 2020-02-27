@@ -1,18 +1,10 @@
 let yelpAPI = require("yelp-api");
+let Yelp = require("../config/index");
 
 const apiKey = "";
 let yelp = new yelpAPI(apiKey);
 
-console.log(process.env.DATABASE_URL);
-
-//Longitude/Latitude = Geocoder Midpoint
-//Price = Difference between two price ranges
-//Open_At = Open places in correlation with latest time input, out of two inputs
-
-let lng = 47.222;
-let lat = 69.333;
-let price = 3;
-let open_at = "8:00";
+let limit = 5;
 
 let params = [
   { longitude: lng },

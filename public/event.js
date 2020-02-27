@@ -27,6 +27,7 @@ submiteventbtn.addEventListener("click", evt => {
       localStorage.setItem("eventid", eventid);
       console.log(eventid);
       console.log("successfully created new creator: ", data);
+      document.getElementById("eventid").append(data.eventid);
     })
     .catch(err => console.log("error creating new creator : ", err));
 });

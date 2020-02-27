@@ -44,8 +44,9 @@ router.get("/:id/preferences", async (req, res) => {
 
 //works
 router.post("/:id/preferences", async (req, res) => {
-  const result = await Preferences.create(req.body, {
-    where: { eventid: req.params.id }
+  const result = await Preferences.create({
+    ...req.body,
+    eventid: req.params.id
   });
   res.json(result);
 });

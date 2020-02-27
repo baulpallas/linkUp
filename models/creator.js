@@ -19,6 +19,4 @@ const Creator = sequelize.define("creator", {
   }
 });
 
-Creator.sync();
-
 module.exports = Creator;
