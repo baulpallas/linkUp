@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const exphbs = require("express-handlebars");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 
 var app = express();
 const PORT = 8080;

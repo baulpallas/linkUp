@@ -18,6 +18,7 @@ router.get("/:id", async function(req, res) {
 
   if (eventDetails.preferences && eventDetails.preferences.length > 1) {
     const eventLocation = await utils.computeLocation(eventDetails);
+    await console.log("debug " + eventLocation);
     if (eventLocation) {
       res.render("eventDetails", {
         event: JSON.stringify({ ...eventDetails, location: eventLocation })

@@ -1,38 +1,68 @@
 const axios = require("axios").default;
-const gmaps = process.env.GOOGLEMAPS_KEY;
-console.log(gmaps);
+const geolib = require("geolib");
+let yelpAPI = require("yelp-api");
+let Yelp = require("../config/index");
+
+// import { getCenter} from 'geolib';
 
 const computeLocation = async event => {
+  //initialize variables
   const Y = event.preferences[0].dataValues;
   let { lat, lng } = Y;
-
-  console.log(lat, lng);
   let X = event.preferences[1].dataValues;
   [latX, lngX] = [X.lat, X.lng];
 
-  // return event.preferences[0].dataValues;
-  const maps = await axios
-    .get(
-      `https://maps.googleapis.com/maps/api/js?key=${gmaps}&libraries=geometry`
-    )
-    .then(function(response) {
-      let xPlace = new google.maps.LatLng(latx, lngx);
-      let yPlace = new google.maps.LatLng(lat, lng);
-      const midpoint = google.maps.geometry.spherical.interpolate(
-        xPlace,
-        yPlace,
-        0.5
-      );
-      console.log(JSON.stringify(midpoint));
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  let priceX = X.price;
+  let priceY = Y.price;
 
-  return maps;
+  let availX = X.availability;
+  let availY = Y.availability;
 
-  const money = Math.avg();
+  let midpoint = geolib.getCenter([
+    {
+      latitude: latX,
+      longitude: lngX
+    },
+    { latitude: lat, longitude: lng }
+  ]);
+  let { longitude, latitude } = midpoint;
+
+  const money = Math.floor((priceX + priceY) / 2);
+
+  function determineTime(availX, availY) {
+    if (availX > availY) {
+      return availY;
+    }
+    if (availY > availX) {
+      return availY;
+    } else {
+      return availY;
+    }
+  }
+
+  const apiKey = process.env.YELP_APIKEY;
+  let yelp = new yelpAPI(apiKey);
+  let limit = 5;
+  let params = [
+    { longitude: longitude },
+    { latitude: latitude },
+    { categories: "bars" },
+    { price: money },
+    { limit: limit }
+  ];
+
+  const yelpQuery = function(params) {
+    yelp
+      .query("businesses/search", params)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  yelpQuery(params);
 };
 
 module.exports = {

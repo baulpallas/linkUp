@@ -57,6 +57,7 @@ router.post("/signup", async (req, res) => {
 router.post("/join", async (req, res) => {
   const eventid = req.body.eventid;
   console.log(eventid);
+
   let event = [];
   try {
     event = await Event.findAll({ where: { eventid: eventid } });
@@ -64,7 +65,7 @@ router.post("/join", async (req, res) => {
     if (event === []) {
       res.status(500).json({ message: "event doesn't exist" });
     } else {
-      res.redirect(`/event/${eventid0}`);
+      res.redirect(`/event/${eventid}`);
     }
   } catch (err) {
     res.status(500).json({ message: "stuff broke" });

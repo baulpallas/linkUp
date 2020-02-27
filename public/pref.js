@@ -73,18 +73,18 @@ prefbtn.addEventListener("click", evt => {
 
   const serverpush = async () => {
     const result = await prefpush();
-    fetch(`/utils`, {
-      method: "POST",
-      body: JSON.stringify(prefs),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log("successfully posted to server: ", data);
-      })
-      .catch(err => console.log("error posting to server: ", err));
+    // fetch(`/utils`, {
+    //   method: "POST",
+    //   body: JSON.stringify(prefs),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log("successfully posted to server: ", data);
+    //   })
+    //   .catch(err => console.log("error posting to server: ", err));
   };
 
   serverpush();
