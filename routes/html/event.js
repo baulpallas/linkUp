@@ -14,22 +14,22 @@ router.get("/:id", async function(req, res) {
   });
 
   const { dataValues: eventDetails = {} } = event;
-  const Y = event.preferences[0].dataValues;
-  let X = event.preferences[1].dataValues;
-  let availX = X.availability;
-  let availY = Y.availability;
-  function determineTime(availX, availY) {
-    if (availX > availY) {
-      return availY;
-    }
-    if (availY > availX) {
-      return availY;
-    } else {
-      return availY;
-    }
-  }
 
   if (eventDetails.preferences && eventDetails.preferences.length > 1) {
+    const Y = event.preferences[0].dataValues;
+    let X = event.preferences[1].dataValues;
+    let availX = X.availability;
+    let availY = Y.availability;
+    function determineTime(availX, availY) {
+      if (availX > availY) {
+        return availY;
+      }
+      if (availY > availX) {
+        return availY;
+      } else {
+        return availY;
+      }
+    }
     const eventLocation = await utils.computeLocation(eventDetails);
     if (eventLocation) {
       res.render("eventDetails", {
