@@ -62,6 +62,8 @@ submitbtn.addEventListener("click", evt => {
 let signinform = document.getElementById("signinform");
 let loginbtn = document.getElementById("log-in-btn");
 loginbtn.addEventListener("click", evt => {
+  let exuseremail = $("#exhostemail").val();
+  let exuserpw = $("#exhostpassword").val();
   evt.preventDefault();
   let logininput = signinform.querySelectorAll("input");
   let loginuser = {};
@@ -69,21 +71,23 @@ loginbtn.addEventListener("click", evt => {
     loginuser[user.name] = user.value;
   }
   fetch("/auth/login", {
-    method: "POST",
-    body: JSON.stringify(loginuser),
+    method: "GET",
     headers: {
       "Content-Type": "application/json"
     }
   })
     .then(res => res.json())
     .then(data => {
-      // creatorid = data.creatorid;
-      // console.log(creatorid);
-      console.log("successfully created new creator: ", data);
-      console.log(data.nickname);
-      $("#host-welcome").append(
-        `Welcome ${data.nickname}! <br>Let's get started.`
-      );
+      console.log(data.result);
+      var users = data.result;
+      users.forEach(user => {
+        if ((user.email === exuseremail) & (user.password === exuserpw)) {
+          localStorage.setItem("creatorid", user.creatorid);
+          $("#host-welcome").append(
+            `Welcome ${user.nickname}! <br>Let's get started.`
+          );
+        }
+      });
     })
     .catch(err => console.log("error creating new creator : ", err));
 });

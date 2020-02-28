@@ -23,7 +23,7 @@ findmebtn.addEventListener("click", evt => {
       longitude = position.coords.longitude;
       prefs["lat"] = latitude;
       prefs["lng"] = longitude;
-      console.log(prefs);
+      updateZip();
     }
     function error() {
       status.textContent = "Unable to retrieve your location";
@@ -79,3 +79,15 @@ prefbtn.addEventListener("click", evt => {
   };
   moveToNextPage();
 });
+
+function updateZip() {
+  fetch(
+    `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=6D8PTQLN887UTV15VBCJ`
+  )
+    .then(response => {
+      return response.json();
+    })
+    .then(myJson => {
+      $("#zipcode").val(myJson.DataList[0].Code);
+    });
+}

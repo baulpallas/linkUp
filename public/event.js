@@ -28,8 +28,20 @@ submiteventbtn.addEventListener("click", evt => {
       console.log(eventid);
       console.log("successfully created new creator: ", data);
       document.getElementById("eventid").append(data.eventid);
+      // window.location.href = `/event/${eventid}`;
     })
     .catch(err => console.log("error creating new creator : ", err));
+});
+
+let eventbtn = document.getElementById("eventbtn");
+
+eventbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  fetch(`event/${eventid}`, {
+    method: "GET"
+  }).then(res => {
+    window.location.href = res.url;
+  });
 });
 
 $(document).ready(function() {
