@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
   }
   if (user && user[0].dataValues.password === password) {
     console.log("stepped in");
-    res.redirect("../html/event");
+    res.redirect("/event");
   }
 });
 
