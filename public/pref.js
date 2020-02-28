@@ -1,12 +1,7 @@
-import { ConfigurationContext } from "twilio/lib/rest/flexApi/v1/configuration";
-
 $(document).ready(function() {
   $(".disclaimer").css("display", "none");
 });
 
-let zipcodeapi = process.env.ZIPCODE_API;
-console.log("debug", zipcodeapi);
-console.log(zipcodeapi);
 let prefs = {};
 let findmebtn = document.getElementById("find-me-btn");
 let latitude;
@@ -28,7 +23,7 @@ findmebtn.addEventListener("click", evt => {
       longitude = position.coords.longitude;
       prefs["lat"] = latitude;
       prefs["lng"] = longitude;
-      updateZip();
+      // updateZip();
     }
     function error() {
       status.textContent = "Unable to retrieve your location";
@@ -85,14 +80,30 @@ prefbtn.addEventListener("click", evt => {
   moveToNextPage();
 });
 
-function updateZip() {
-  fetch(
-    `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=${zipcodeapi}`
-  )
-    .then(response => {
-      return response.json();
-    })
-    .then(myJson => {
-      $("#zipcode").val(myJson.DataList[0].Code);
+const checkEventStatus = setInterval(() => {
+  fetch(`/api/event/${eventid}/preferences`, {
+    method: "GET"
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      console.log(data.length);
+
+      if (data.length >= 2) {
+        clearInterval(checkEventStatus);
+        location.reload();
+      }
     });
-}
+}, 10000);
+
+// function updateZip() {
+//   fetch(
+//     `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=${zipcodeapi}`
+//   )
+//     .then(response => {
+//       return response.json();
+//     })
+//     .then(myJson => {
+//       $("#zipcode").val(myJson.DataList[0].Code);
+//     });
+// }
