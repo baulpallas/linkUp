@@ -6,39 +6,41 @@ let Yelp = require("../config/index");
 // import { getCenter} from 'geolib';
 
 const computeLocation = async event => {
-  //initialize variables
+  let X;
+  let priceX;
+  let availX;
+  let latX;
+  let lngX;
+  let midpoint;
+  let longitude;
+  let latitude;
+  let money;
   const Y = event.preferences[0].dataValues;
   let { lat, lng } = Y;
-  let X = event.preferences[1].dataValues;
-  [latX, lngX] = [X.lat, X.lng];
-
-  let priceX = X.price;
   let priceY = Y.price;
-
-  let availX = X.availability;
   let availY = Y.availability;
 
-  let midpoint = geolib.getCenter([
-    {
-      latitude: latX,
-      longitude: lngX
-    },
-    { latitude: lat, longitude: lng }
-  ]);
+  if (event.partysize > 1) {
+    X = event.preferences[1].dataValues;
+    latX = X.lat;
+    lngX = X.lng;
+    priceX = X.price;
+    availX = X.availability;
 
-  let { longitude, latitude } = midpoint;
-
-  const money = Math.floor((priceX + priceY) / 2);
-
-  function determineTime(availX, availY) {
-    if (availX > availY) {
-      return availY;
-    }
-    if (availY > availX) {
-      return availY;
-    } else {
-      return availY;
-    }
+    midpoint = geolib.getCenter([
+      {
+        latitude: latX,
+        longitude: lngX
+      },
+      { latitude: lat, longitude: lng }
+    ]);
+    longitude = midpoint.longitude;
+    latitude = midpoint.latitude;
+    money = Math.floor((priceX + priceY) / 2);
+  } else {
+    longitude = lng;
+    latitude = lat;
+    money = priceY;
   }
 
   const apiKey = process.env.YELP_APIKEY;
@@ -53,7 +55,7 @@ const computeLocation = async event => {
   ];
 
   const yelpQuery = async function(params) {
-    console.log(params);
+    console.log("debug", params);
     let yelpResponse;
     await yelp
       .query("businesses/search", params)
@@ -63,7 +65,6 @@ const computeLocation = async event => {
       .catch(err => {
         console.log(err);
       });
-    console.log(yelpResponse);
     return yelpResponse;
   };
   return await yelpQuery(params);

@@ -15,11 +15,25 @@ router.get("/:id", async function(req, res) {
 
   const { dataValues: eventDetails = {} } = event;
 
-  if (eventDetails.preferences && eventDetails.preferences.length > 1) {
-    const Y = event.preferences[0].dataValues;
-    let X = event.preferences[1].dataValues;
-    let availX = X.availability;
+  console.log("debug", eventDetails.partysize);
+  let X;
+  let availX;
+  let time;
+  if (
+    eventDetails.preferences &&
+    eventDetails.preferences.length >= eventDetails.partysize
+  ) {
+    let Y = event.preferences[0].dataValues;
     let availY = Y.availability;
+
+    if (eventDetails.preferences.length > 1) {
+      X = event.preferences[1].dataValues;
+      availX = X.availability;
+      time = determineTime(availX, availY);
+    } else {
+      time = availY;
+    }
+
     function determineTime(availX, availY) {
       if (availX > availY) {
         return availY;
@@ -33,12 +47,11 @@ router.get("/:id", async function(req, res) {
     const eventLocation = await utils.computeLocation(eventDetails);
     if (eventLocation) {
       let clean = JSON.parse(eventLocation);
-      console.log(clean.businesses);
       res.render("eventDetails", {
         event: {
           ...clean.businesses,
           location: eventLocation,
-          time: determineTime(availX, availY)
+          time: time
         }
       });
     }

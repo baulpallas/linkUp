@@ -12,7 +12,9 @@ submiteventbtn.addEventListener("click", evt => {
   for (let input of eventinputs) {
     newEvent[input.name] = input.value;
   }
-  console.log(newEvent.name);
+  let partysize = document.getElementById("partysize").value;
+  newEvent["partysize"] = partysize;
+  console.log(newEvent);
 
   fetch(`/api/creator/${creatorid}/event`, {
     method: "POST",
