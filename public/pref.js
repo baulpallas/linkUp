@@ -1,7 +1,12 @@
+import { ConfigurationContext } from "twilio/lib/rest/flexApi/v1/configuration";
+
 $(document).ready(function() {
   $(".disclaimer").css("display", "none");
 });
 
+let zipcodeapi = process.env.ZIPCODE_API;
+console.log("debug", zipcodeapi);
+console.log(zipcodeapi);
 let prefs = {};
 let findmebtn = document.getElementById("find-me-btn");
 let latitude;
@@ -82,7 +87,7 @@ prefbtn.addEventListener("click", evt => {
 
 function updateZip() {
   fetch(
-    `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=6D8PTQLN887UTV15VBCJ`
+    `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=${zipcodeapi}`
   )
     .then(response => {
       return response.json();
