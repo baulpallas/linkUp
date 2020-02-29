@@ -15,7 +15,6 @@ submiteventbtn.addEventListener("click", evt => {
   let partysize = document.getElementById("partysize").value;
   newEvent["partysize"] = partysize;
   console.log(newEvent);
-
   fetch(`/api/creator/${creatorid}/event`, {
     method: "POST",
     body: JSON.stringify(newEvent),
@@ -42,7 +41,8 @@ eventbtn.addEventListener("click", evt => {
   fetch(`event/${eventid}`, {
     method: "GET"
   }).then(res => {
-    window.location.href = res.url;
+    console.log(res.url);
+    window.location.href = `/event/${eventid}`;
   });
 });
 

@@ -42,6 +42,29 @@ loginbtn.addEventListener("click", evt => {
   for (let user of logininput) {
     loginuser[user.name] = user.value;
   }
+  //   fetch("/auth/login", {
+  //     method: "POST",
+  //     body: JSON.stringify(loginuser),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //       if (res.redirected) {
+  //         console.log("hiiiiii");
+  //         window.location.href = res.url;
+  //       }
+  //     })
+  //     .then(data => {
+  //       console.log("successfully created new creator: ", data);
+  //       console.log(data.nickname);
+  //       $("#host-welcome").append(
+  //         `Welcome ${data.nickname}! <br>Let's get started.`
+  //       );
+  //     })
+  //     .catch(err => console.log("error creating new creator : ", err));
+  // });
   fetch("/auth/login", {
     method: "GET",
     headers: {
@@ -67,7 +90,7 @@ loginbtn.addEventListener("click", evt => {
 let eventidform = document.getElementById("event-id");
 let joinbtn = document.getElementById("join-btn");
 
-joinbtn.addEventListener("click", evt => {
+joinbtn.addEventListener("click", async evt => {
   evt.preventDefault();
 
   let eventidinput = eventidform.querySelectorAll("input");
@@ -81,7 +104,7 @@ joinbtn.addEventListener("click", evt => {
   console.log(eventtojoin);
   localStorage.setItem("eventid", eventidval);
 
-  fetch("/auth/join", {
+  await fetch("/auth/join", {
     method: "POST",
     body: JSON.stringify(eventtojoin),
     headers: {
@@ -94,4 +117,14 @@ joinbtn.addEventListener("click", evt => {
       }
     })
     .catch(err => console.log("error logging event : ", err));
+});
+
+let neweventbtn = document.getElementById("new-event-btn");
+neweventbtn.addEventListener("click", evt => {
+  evt.preventDefault();
+  fetch(`event/`, {
+    method: "GET"
+  }).then(res => {
+    window.location.href = res.url;
+  });
 });
