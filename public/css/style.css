@@ -54,13 +54,16 @@ a {
   padding: 0.8rem 1.2rem;
   margin-bottom: 50px;
 }
-.host-home,
+
 .host,
 .guest,
 .newhost,
 .exisitnghost,
 .welcome-msg {
   padding: 5rem 0;
+}
+.host-home {
+  padding: 7rem 0;
 }
 .enter-buttons {
   display: flex;

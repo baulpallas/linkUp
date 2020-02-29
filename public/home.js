@@ -25,7 +25,7 @@ submitbtn.addEventListener("click", evt => {
       console.log(creatorid);
       console.log("successfully created new creator: ", data);
       $("#host-welcome").append(
-        `Welcome, ${data.nickname}! <br>Let's get started.`
+        `Welcome ${data.nickname}! <br>Let's get started.`
       );
     })
     .catch(err => console.log("error creating new creator : ", err));
@@ -79,7 +79,7 @@ loginbtn.addEventListener("click", evt => {
         if ((user.email === exuseremail) & (user.password === exuserpw)) {
           localStorage.setItem("creatorid", user.creatorid);
           $("#host-welcome").append(
-            `Welcome, ${user.nickname}! <br>Let's get started.`
+            `Welcome ${user.nickname}! <br>Let's get started.`
           );
         }
       });
