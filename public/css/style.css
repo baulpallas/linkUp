@@ -53,13 +53,15 @@ a {
   padding: 0.8rem 1.2rem;
   margin-bottom: 50px;
 }
-.welcome-msg,
+.host-home,
 .host,
 .guest,
 .newhost,
-.exisitnghost,
-.host-home {
+.exisitnghost {
   padding: 5rem 0;
+}
+.welcome-msg {
+  padding: 2rem 0;
 }
 .enter-buttons {
   display: flex;
@@ -234,6 +236,6 @@ button {
   color: #ff7043;
 }
 .disclaimer {
-  margin-bottom: 0;
-  padding: 0;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
 }
