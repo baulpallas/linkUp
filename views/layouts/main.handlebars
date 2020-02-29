@@ -41,30 +41,13 @@
         </div>
 
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container" style="margin-bottom: 0;">
                 © 2020 Team linkUp
                 <a class="grey-text text-lighten-4 right" href="https://github.com/baulpallas/linkUp">GitHub Repo</a>
             </div>
         </div>
     </footer>
-    <script>
-        $(document).ready(function () {
-            $('select').formSelect();
-        });
-        $(document).ready(function () {
-            $('.timepicker').timepicker({
-                pickTime: true,
-                useSeconds: false,
-                format: 'hh:mm',
-                interval: 30
-            });
-        });
-        $(document).ready(function () {
-            $('.datepicker').datepicker({});
-        });
-    </script>
-    {{!-- <script src="../../api.js"></script> --}}
-    <script src="../public/backnav.js"></script>
+    <script src="../public/misc.js"></script>
     <script src="../public/displays.js"></script>
 </body>
 

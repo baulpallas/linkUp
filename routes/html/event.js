@@ -7,6 +7,10 @@ router.get("/", async function(req, res) {
   res.render("event");
 });
 
+router.get("/wait", function(req, res) {
+  res.render("wait", {});
+});
+
 router.get("/:id", async function(req, res) {
   const [event] = await Event.findAll({
     where: { eventid: req.params.id },
@@ -52,7 +56,7 @@ router.get("/:id", async function(req, res) {
         event: {
           ...clean.businesses,
           location: eventLocation,
-          time: time
+          time: time.toLocaleString(undefined, options)
         }
       });
     }
@@ -60,5 +64,11 @@ router.get("/:id", async function(req, res) {
     res.render("preferences");
   }
 });
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+};
 
 module.exports = router;

@@ -5,7 +5,7 @@
             <div class="space-evenly"><input type="number" id="zipcode" name="zipcode" placeholder="ex. 10004">
                 <button id="find-me-btn" class="waves-effect blue-grey darken-3 btn-small">Find me</button>
             </div>
-            <label for="location">Enter your current zip code OR press 'Find Me' to autofill</label>
+            <label for="location">Press 'Find Me' to autofill your location</label>
             <br>
             <br>
             <select id="price" name="price">
@@ -24,9 +24,26 @@
             </div>
             <label>Select a date and starting time for your availability</label>
             <br><br>
-            <button class="waves-effect blue-grey darken-3 btn" id='submit-pref' type="button"><a
-                    href="./wait">Submit</a> <i class="material-icons right">send</i></button>
+            <button class="waves-effect blue-grey darken-3 btn" id='submit-pref' type="button"><a>Submit</a> <i
+                    class="material-icons right">send</i></button>
         </form>
+    </div>
+    <div class="loader">
+        <h2 style="font-size: 3rem;padding: 4rem 0 2rem;">Bare with us! <br> We are gathering results for
+            your
+            linkUp.
+        </h2>
+
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 </div>
 <script src="../public/pref.js"></script>

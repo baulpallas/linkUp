@@ -18,14 +18,15 @@
     </div>
     <div class="results">
         <h2 style="font-size: 3rem">Here's what we've got for you!</h2>
-        <h4 style="font-size: 2rem">Your event will start at: {{event.time}}</h4>
+        <h4 style="font-size: 2rem">Your event will start on {{event.time}}</h4>
         {{#each event}}
         <div class="row">
+            {{#if this.name}}
             <div class="card blue-grey darken-3">
                 <div class="card-content white-text">
-                    {{#if this.name}}
+
                     <div class="space-between"><span class="card-title">{{this.name}}</span>
-                        {{/if}}
+
                         <p>{{this.price}}</p>
                     </div>
                     <p>{{this.location.address1}} {{this.location.city}}
@@ -35,11 +36,14 @@
                 <div class="card-action">
                     <a style="margin: 0" href="{{this.url}}" target="_blank">View on Yelp</a>
                 </div>
+                {{else}}
+                <h1></h1>
+                {{/if}}
             </div>
         </div>
         {{/each}}
     </div>
 </div>
 </div>
-{{!-- 
-<script src="../public/result.js"></script> --}}
+
+<script src="../public/result.js"></script>
