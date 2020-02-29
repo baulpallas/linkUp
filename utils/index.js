@@ -43,7 +43,9 @@ const computeLocation = async event => {
     money = priceY;
   }
 
-  const apiKey = process.env.YELP_APIKEY;
+  const apiKey =
+    process.env.YELP_APIKEY ||
+    "XhsZoYO6OoUhMId0iUOgQWRLvMhOYK3l6GrOytCwDLuecSDfbrD2RbXg2LhSEctDz6fXCbimjvO4OjBBMeMyXhyjmlcakMCS3NIon3TAaJZbJPvhVyzrreKTf6hJXnYx";
   let yelp = new yelpAPI(apiKey);
   let limit = 5;
   let params = [

@@ -56,7 +56,7 @@ router.get("/:id", async function(req, res) {
         event: {
           ...clean.businesses,
           location: eventLocation,
-          time: time.toLocaleString()
+          time: time.toLocaleString(undefined, options)
         }
       });
     }
@@ -64,5 +64,11 @@ router.get("/:id", async function(req, res) {
     res.render("preferences");
   }
 });
+const options = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+};
 
 module.exports = router;

@@ -51,6 +51,7 @@ a {
 }
 .container {
   padding: 0.8rem 1.2rem;
+  margin-bottom: 50px;
 }
 .welcome-msg,
 .host,
@@ -231,4 +232,8 @@ button {
   .card-action
   a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
   color: #ff7043;
+}
+.disclaimer {
+  margin-bottom: 0;
+  padding: 0;
 }
