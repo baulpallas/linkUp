@@ -50,6 +50,7 @@ const computeLocation = async event => {
     { longitude: longitude },
     { latitude: latitude },
     { categories: "bars" },
+    { radius: 400 },
     { price: money },
     { limit: limit }
   ];

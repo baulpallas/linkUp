@@ -47,6 +47,7 @@ router.get("/:id", async function(req, res) {
     const eventLocation = await utils.computeLocation(eventDetails);
     if (eventLocation) {
       let clean = JSON.parse(eventLocation);
+      console.log(clean);
       res.render("eventDetails", {
         event: {
           ...clean.businesses,
