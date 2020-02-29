@@ -43,7 +43,6 @@
             <label for="password">Enter your password</label>
             <br><br>
             <button class="waves-effect blue-grey darken-3 btn" id="log-in-btn" type="button">Login</button>
-            {{!-- need to be linked to a GET request --}}
         </form>
     </div>
     <div class="host-home">
@@ -62,6 +61,13 @@
             <br><br>
             <button id="join-btn" class="waves-effect blue-grey darken-3 btn enter-pref" type="button">Enter</button>
         </form>
+    </div>
+    <div class="invalid-user" style="padding-top: 2rem;">
+        <h2>Invalid user entry,
+            please try again.</h2>
+        <div class="grid">
+            <a class="waves-effect blue-grey darken-3 btn" id="existing-login-btn">Login</a>
+        </div>
     </div>
 </div>
 <script src="../public/home.js"></script>

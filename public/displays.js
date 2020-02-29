@@ -12,6 +12,10 @@ $("#new-host-btn").click(function() {
   $(".newhost").css("display", "block");
   $(".host").css("display", "none");
 });
+$("#existing-login-btn").click(function() {
+  $(".exisitnghost").css("display", "block");
+  $(".invalid-user").css("display", "none");
+});
 $("#existing-host-btn").click(function() {
   $(".exisitnghost").css("display", "block");
   $(".host").css("display", "none");

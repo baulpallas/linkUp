@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $(".disclaimer").css("display", "none");
 });
-
+let partysize = localStorage.getItem("partysize");
 let prefs = {};
 let findmebtn = document.getElementById("find-me-btn");
 let latitude;
@@ -23,7 +23,7 @@ findmebtn.addEventListener("click", evt => {
       longitude = position.coords.longitude;
       prefs["lat"] = latitude;
       prefs["lng"] = longitude;
-      // updateZip();
+      updateZip();
     }
     function error() {
       status.textContent = "Unable to retrieve your location";
@@ -37,10 +37,12 @@ findmebtn.addEventListener("click", evt => {
 });
 
 let prefbtn = document.getElementById("submit-pref");
+$(".btn").click(function() {
+  $(".pref").css("display", "none");
+  $(".loader").css("display", "block");
+});
 
 prefbtn.addEventListener("click", evt => {
-  evt.preventDefault();
-
   let dateinput = document.getElementById("date").value;
   let timeinput = document.getElementById("time").value;
   let space = " ";
@@ -75,7 +77,14 @@ prefbtn.addEventListener("click", evt => {
 
   const moveToNextPage = async () => {
     const result = await prefpush();
-    location.reload();
+    function refresh() {
+      if (partysize == 1) {
+        location.reload();
+        $(".pref").css("display", "none");
+        $(".loader").css("display", "block");
+      }
+    }
+    refresh();
   };
   moveToNextPage();
 });
@@ -92,18 +101,8 @@ const checkEventStatus = setInterval(() => {
       if (data.length >= 2) {
         clearInterval(checkEventStatus);
         location.reload();
+        $(".pref").css("display", "none");
+        $(".loader").css("display", "block");
       }
     });
 }, 10000);
-
-// function updateZip() {
-//   fetch(
-//     `https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius/ByLatLon?latitude=${latitude}&longitude=${longitude}&maximumradius=1&minimumradius=0&key=${zipcodeapi}`
-//   )
-//     .then(response => {
-//       return response.json();
-//     })
-//     .then(myJson => {
-//       $("#zipcode").val(myJson.DataList[0].Code);
-//     });
-// }
